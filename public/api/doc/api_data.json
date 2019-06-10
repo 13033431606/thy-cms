@@ -1,6 +1,6 @@
 [
   {
-    "type": "post",
+    "type": "get",
     "url": "/article/:id",
     "title": "文章数据获取",
     "name": "Article",
@@ -14,6 +14,13 @@
             "optional": false,
             "field": "id",
             "description": "<p>单个文章id,或文章id集合(用&quot;,&quot;分割)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id:0",
+            "description": "<p>获取所有</p>"
           }
         ]
       },
@@ -73,7 +80,7 @@
     }
   },
   {
-    "type": "post",
+    "type": "get",
     "url": "/category/:id",
     "title": "分类数据获取",
     "name": "Category",
@@ -121,7 +128,87 @@
     }
   },
   {
-    "type": "post",
+    "type": "get",
+    "url": "/count/:id",
+    "title": "获取文章数量",
+    "name": "Count",
+    "group": "Category",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>单个分类id,或分类id集合(用&quot;,&quot;分割)</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id:0",
+            "description": "<p>获取所有</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "请求样式:",
+          "content": "data:{\"id\":\"19\"}\ndata:{\"id\":\"18,19\"}",
+          "type": "js"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "成功返回": [
+          {
+            "group": "成功返回",
+            "type": "String",
+            "optional": false,
+            "field": "code",
+            "description": "<p>状态标识码</p>"
+          },
+          {
+            "group": "成功返回",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>状态信息</p>"
+          },
+          {
+            "group": "成功返回",
+            "type": "Number",
+            "optional": false,
+            "field": "data",
+            "description": "<p>统计数量</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "样本数据:",
+          "content": "{\"code\":\"200\",\"message\":\"链接成功\",\"data\":21}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./api.php",
+    "groupTitle": "Category",
+    "error": {
+      "examples": [
+        {
+          "title": "访问失败:",
+          "content": "{\n\"code\": \"502\",\n\"message\": \"链接失败\",\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
+    "type": "get",
     "url": "/getTree/:id",
     "title": "分类树结构获取",
     "name": "getTree",
@@ -183,8 +270,8 @@
     "url": "",
     "version": "0.0.0",
     "filename": "./doc/main.js",
-    "group": "D__phpStudy_PHPTutorial_WWW_thycms_public_api_doc_main_js",
-    "groupTitle": "D__phpStudy_PHPTutorial_WWW_thycms_public_api_doc_main_js",
+    "group": "D__WWW_thy_cms_public_api_doc_main_js",
+    "groupTitle": "D__WWW_thy_cms_public_api_doc_main_js",
     "name": ""
   },
   {

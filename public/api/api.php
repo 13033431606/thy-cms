@@ -17,11 +17,12 @@
  */
 
 /**
- * @api {post} /article/:id 文章数据获取
+ * @api {get} /article/:id 文章数据获取
  * @apiName Article
  * @apiGroup Article
  *
  * @apiParam {String} id 单个文章id,或文章id集合(用","分割)
+ * @apiParam {String} id:0 获取所有
  *
  * @apiSuccess (成功返回) {Number} code 状态标识码
  * @apiSuccess (成功返回) {String} message  状态信息
@@ -60,7 +61,7 @@
 
 
 /**
- * @api {post} /category/:id 分类数据获取
+ * @api {get} /category/:id 分类数据获取
  * @apiName Category
  * @apiGroup Category
  *
@@ -91,8 +92,31 @@
  *
  */
 
+
 /**
- * @api {post} /getTree/:id 分类树结构获取
+ * @api {get} /count/:id 获取文章数量
+ * @apiName Count
+ * @apiGroup Category
+ *
+ * @apiParam {String} id 单个分类id,或分类id集合(用","分割)
+ * @apiParam {String} id:0 获取所有
+ *
+ * @apiSuccess (成功返回) {String} code 状态标识码
+ * @apiSuccess (成功返回) {String} message 状态信息
+ * @apiSuccess (成功返回) {Number} data 统计数量
+ *
+ * @apiParamExample {js} 请求样式:
+ * data:{"id":"19"}
+ * data:{"id":"18,19"}
+ *
+ * @apiSuccessExample 样本数据:
+ *{"code":"200","message":"链接成功","data":21}
+ *
+ * @apiUse FoundError
+ */
+
+/**
+ * @api {get} /getTree/:id 分类树结构获取
  * @apiName getTree
  * @apiGroup Category
  *
@@ -160,3 +184,4 @@
 }]
 }]
  */
+
