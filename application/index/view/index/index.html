@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	{include file="public:head_login"}
+</head>
+<body>
+<div class="login_main">
+	<div class="login_bac"></div>
+	<div class="login_mask"></div>
+	<div class="login_button">
+		<a href="__APP__/admin">
+			<div class="login_button_big"></div>
+			<div class="login_button_small"></div>
+			<div class="login_button_small2"></div>
+			<img src="__STATIC__/Image/logo.png" class="logo" alt="">
+		</a>
+	</div>
+</div>
+{include file="public:footer"}
+<script>
+    $(function() {
+        $(".login_bac").addClass("login_bac_on");
+    })
+</script>
+</body>
+</html>

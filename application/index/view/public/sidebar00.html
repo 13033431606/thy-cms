@@ -1,0 +1,45 @@
+<div class="sideBar fl">
+    <div class="sider1">
+        <div class="title" style="border-radius: 5px;box-shadow: 0 0 15px 0 rgba(0,0,0,0.2)">
+            <span class="iconfont icon-chanpinzhongxin"></span>
+            <span>产品分类</span><br>
+            <span style="font-family: Arial;font-size: 18px;margin-top: 5px;display: block;text-transform: uppercase">PRODUCTS</span>
+        </div>
+        <div class="list">
+            <ul>
+               <volist>
+                   <li class="thy-side-li">
+                       <a href="__APP__/product/{$vo1.id}" class="server-s">{$vo1.name}</a>
+                   </li>
+               </volist>
+            </ul>
+        </div>
+    </div>
+    <div class="contact">
+        <div class="title" style="border-radius: 5px;box-shadow: 0 0 15px 0 rgba(0,0,0,0.2)">
+            <span class="iconfont icon-nbbPhone1"></span>
+            <span>联系我们</span>
+            <span style="font-family: Arial;font-size: 18px;margin-top: 5px;display: block">CONTACT US</span>
+        </div>
+        <div class="content tous" style="padding-left: 25px;padding-right: 25px">
+            <dl>
+                <dt>联系人：{$config['linkman']}</dt>
+            </dl>
+            <dl>
+                <dt>手机：{$config['mobile']}</dt>
+            </dl>
+            <dl>
+                <dt>联系人：{$config['linkman2']}</dt>
+            </dl>
+            <dl>
+                <dt>手机：{$config['mobile2']}</dt>
+            </dl>
+            <dl>
+                <dt>电话：{$config['tel']}</dt>
+            </dl>
+            <dl>
+                <dt>地址：{$config['address']}</dt>
+            </dl>
+        </div>
+    </div>
+</div>

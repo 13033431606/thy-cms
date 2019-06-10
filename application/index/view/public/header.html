@@ -1,0 +1,264 @@
+<header class="pc_header">
+	<div class="header_mid">
+		<main>
+			<div class="header_nav">
+				<li <eq name="CONTROLLER_NAME" value="Index">id="thyNavStyle"</eq>>
+				<a href="__APP__/"><span>网站首页</span></a>
+				</li>
+				<li <eq name="CONTROLLER_NAME" value="Company">id="thyNavStyle"</eq>>
+				<a href="__APP__/company"><span>关于我们</span></a>
+				</li>
+				<li <eq name="CONTROLLER_NAME" value="Product">id="thyNavStyle"</eq>>
+				<a href="__APP__/product"><span>产品中心</span></a>
+				</li>
+				<li <eq name="CONTROLLER_NAME" value="News">id="thyNavStyle"</eq>>
+				<a href="__APP__/news"><span>新闻资讯</span></a>
+				</li>
+				<li <eq name="CONTROLLER_NAME" value="Honor">id="thyNavStyle"</eq>>
+				<a href="__APP__/honor"><span>荣誉资质</span></a>
+				</li>
+				<li <eq name="CONTROLLER_NAME" value="Case">id="thyNavStyle"</eq>>
+				<a href="__APP__/case"><span>案例中心</span></a>
+				</li>
+				<li <eq name="CONTROLLER_NAME" value="Message">id="thyNavStyle"</eq>>
+				<a href="__APP__/message"><span>在线留言</span></a>
+				</li>
+				<li <eq name="CONTROLLER_NAME" value="Jobs">id="thyNavStyle"</eq>>
+				<a href="__APP__/jobs"><span>人才招聘</span></a>
+				</li>
+				<li <eq name="CONTROLLER_NAME" value="Contact">id="thyNavStyle"</eq>>
+				<a href="__APP__/contact"><span>联系我们</span></a>
+				</li>
+			</div>
+		</main>
+	</div>
+
+</header>
+<div class="mobile_header">
+	<div class="mobile_to_index">
+		<a href="__APP__/">
+			<!--<img src="__STATIC__/Image/logo.png" alt="" class="img1">-->
+			<!--<img src="__STATIC__/Image/logo.png" alt="" class="img2">-->
+			{$config.company_name}
+		</a>
+	</div>
+	<div class="mobile_nav">
+		<i class="layui-icon layui-icon-spread-left mobile_nav_control_on"></i>
+		<i class="layui-icon layui-icon-shrink-right mobile_nav_control_off" style="display: none"></i>
+		<div class="mobile_add">
+			<div class="mobile_i">
+				<a href="tel:{$config.tel}">
+					<i class="layui-icon layui-icon-cellphone-fine"></i>
+				</a>
+			</div>
+			<!--<div class="mobile_i">-->
+				<!--<a href="__APP__/contact">-->
+					<!--<i class="layui-icon layui-icon-location"></i>-->
+				<!--</a>-->
+			<!--</div>-->
+		</div>
+	</div>
+	<div class="mobile_nav_main nui-scroll" style="OVERFLOW-Y: auto; OVERFLOW-X:hidden;">
+		<div class="mobile_nav_sea needWaves" onclick="sea()">
+			<i class="layui-icon layui-icon-search"></i>
+		</div>
+		<li <eq name="CONTROLLER_NAME" value="Company">id="mobileStyle"</eq>>
+		<a href="javascript:void (0)"  class="mobile_nav_haveson main_a">
+			<span>Language</span>
+			<div class="layui-icon layui-icon-add-1"></div>
+		</a>
+		<div class="li_son" style="display: none;">
+			<a href="/" class="needWaves"><span>中文</span></a>
+			<a href="/en" class="needWaves"><span>English</span></a>
+		</div>
+		</li>
+		<li  <eq name="CONTROLLER_NAME" value="Index">id="mobileStyle"</eq>>
+		<a href="__APP__/" class="main_a needWaves">
+			<span>网站首页</span>
+		</a>
+		</li>
+		<li  <eq name="CONTROLLER_NAME" value="Company">id="mobileStyle"</eq>>
+		<a href="__APP__/company" class="main_a needWaves">
+			<span>关于我们</span>
+		</a>
+		</li>
+		<li <eq name="CONTROLLER_NAME" value="Product">id="mobileStyle"</eq>>
+		<a href="javascript:void (0)"  class="mobile_nav_haveson main_a">
+			<span>产品中心</span>
+			<div class="layui-icon layui-icon-add-1"></div>
+		</a>
+		<div class="li_son" style="display: none;">
+			<volist name="type" id="vo">
+				<volist name="vo.son" id="vo1">
+					<a href="__APP__/product/{$vo1.id}" class="needWaves"><span>{$vo1.name}</span></a>
+				</volist>
+			</volist>
+		</div>
+		</li>
+		<li  <eq name="CONTROLLER_NAME" value="News">id="mobileStyle"</eq>>
+		<a href="__APP__/news" class="main_a needWaves">
+			<span>新闻资讯</span>
+		</a>
+		</li>
+		<li  <eq name="CONTROLLER_NAME" value="Jobs">id="mobileStyle"</eq>>
+		<a href="__APP__/jobs" class="main_a needWaves">
+			<span>人才招聘</span>
+		</a>
+		</li>
+		<li  <eq name="CONTROLLER_NAME" value="Case">id="mobileStyle"</eq>>
+		<a href="__APP__/case" class="main_a needWaves">
+			<span>工程案例</span>
+		</a>
+		</li>
+		<li  <eq name="CONTROLLER_NAME" value="Contact">id="mobileStyle"</eq>>
+		<a href="__APP__/contact" class="main_a needWaves">
+			<span>联系我们</span>
+		</a>
+		</li>
+		<!--<li <eq name="CONTROLLER_NAME" value="Product">id="mobileStyle"</eq>>-->
+		<!--<a href="javascript:void (0)"  class="mobile_nav_haveson main_a">-->
+		<!--<span>Language</span>-->
+		<!--<div class="layui-icon layui-icon-add-1"></div>-->
+		<!--</a>-->
+		<!--<div class="li_son" style="display: none;">-->
+		<!--<a href="/"><span>中文</span></a>-->
+		<!--<a href="/en"><span>English</span></a>-->
+		<!--<a href="/ko"><span>한국어</span></a>-->
+		<!--<a href="/ja"><span>日本語</span></a>-->
+		<!--</div>-->
+		<!--</li>-->
+
+	</div>
+</div>
+<div id="thy-sea" style="width: 250px;height: 40px;display:none;">
+	<form action="__APP__/search" method="get" class="layui-form">
+		<input name="keyword" type="text" id="search_text" value="请输入产品名称" onfocus="if (value ==defaultValue){value =''}" onblur="if (value ==''){value=defaultValue}">
+		<button type="submit" class="needWaves" onclick="if (search_text.value==search_text.defaultValue||search_text.value=='') {alert('请输入产品名称');search_text.focus();return false;}">
+			搜索
+		</button>
+	</form>
+</div>
+<div id="thy-qr" style="width: 200px;height: 200px;display:none;background: url(__ROOT__/__UPLOAD__/{$config.web_qr}) no-repeat center;background-size: contain"></div>
+
+<div class="float_nav">
+	<a href="javascript:void(0)" class="float_contact_control float_nav_on">
+		<i class="layui-icon layui-icon-reply-fill"></i>
+	</a>
+	<a href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','{$web_url}','','页面编码gb2312|utf-8默认gb2312'));">
+		<i class="layui-icon layui-icon-login-weibo"></i>
+	</a>
+	<a href="javascript:void(0)" onclick="qr()">
+		<i class="layui-icon layui-icon-login-wechat"></i>
+	</a>
+	<a href="javascript:void(0)" onclick="to_top()" class="to_top">
+		<i class="layui-icon layui-icon-up"></i>
+	</a>
+</div>
+
+<div class="float_contact float_contact_on">
+	<div class="p1">
+		联系我们
+		<i class="layui-icon layui-icon-add-1 float_contact_close"></i>
+	</div>
+	<if condition="$config.qq neq ''">
+		<div class="p2">
+			<a href="tencent://message/?Menu=yes&uin={$config.qq}& Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45">
+				<i class="layui-icon layui-icon-login-qq"></i>
+				<div>{$config.qq}</div>
+			</a>
+		</div>
+	</if>
+
+	<div class="p3">
+		<i class="layui-icon layui-icon-cellphone"></i>
+		<span>TEL : </span><br>
+		<div style="text-align: left;line-height: 24px">
+			<span>{$config.mobile}</span><br>
+			<span>{$config.tel}</span>
+		</div>
+	</div>
+</div>
+
+<!--视差Banner-->
+<section class="banner" style="width: 100%;position: relative;overflow: hidden;height: 900px">
+	<div class="banner_container" style="position: fixed;width: 100%;">
+		<div class="swiper-container needDot" id="Banner" style="width: 100%;">
+			<div class="swiper-wrapper" >
+				<volist name="flash" id="vo" offset="0" >
+					<div class="swiper-slide" style="overflow: hidden">
+						<img src="__ROOT__/__UPLOAD__/{$vo.img}" alt="" width="100%" class="imgScale header_banner">
+					</div>
+				</volist>
+			</div>
+			<div class="swiper-pagination banner_dot"></div>
+		</div>
+	</div>
+</section>
+<!--正常banner模块-->
+<!--<section class="banner" style="width: 100%;position: relative;overflow: hidden;">-->
+	<!--<div class="swiper-container needDot" id="Banner" style="width: 100%;">-->
+		<!--<div class="swiper-wrapper" >-->
+			<!--<volist name="flash" id="vo" offset="0" length="1">-->
+				<!--<div class="swiper-slide" style="overflow: hidden">-->
+					<!--<a href="{$vo.link}">-->
+						<!--<img src="__ROOT__/__UPLOAD__/{$vo.img}" alt="" width="100%" class="imgScale header_banner">-->
+					<!--</a>-->
+				<!--</div>-->
+			<!--</volist>-->
+			<!--<volist name="flash" id="vo" offset="1" length="2">-->
+				<!--<div class="swiper-slide" style="overflow: hidden">-->
+					<!--<a href="{$vo.link}">-->
+						<!--<img data-src="__ROOT__/__UPLOAD__/{$vo.img}" alt="" width="100%" class="imgScale header_banner swiper-lazy">-->
+						<!--<div class="swiper-lazy-preloader"></div>-->
+					<!--</a>-->
+
+				<!--</div>-->
+			<!--</volist>-->
+		<!--</div>-->
+		<!--<div class="swiper-pagination banner_dot"></div>-->
+	<!--</div>-->
+<!--</section>-->
+
+
+
+<!--<header></header>-->
+<!--<section class="banner">-->
+	<!--<div class="layui-carousel" id="Banner">-->
+		<!--<div carousel-item>-->
+			<!--&lt;!&ndash;<volist name="flash" id="vo" offset="0" length="3">&ndash;&gt;-->
+				<!--&lt;!&ndash;<div style="background: url(__ROOT__/__UPLOAD__/{$vo.img}) no-repeat center;background-size: cover"></div>&ndash;&gt;-->
+			<!--&lt;!&ndash;</volist>&ndash;&gt;-->
+			<!--<div style="background: url(__STATIC__/Image/banner.jpg) no-repeat center;background-size: cover"></div>-->
+			<!--<div style="background: url(__STATIC__/Image/banner.jpg) no-repeat center;background-size: cover"></div>-->
+		<!--</div>-->
+	<!--</div>-->
+<!--</section>-->
+
+
+<!--搜索模块-->
+<!--<section class="search thy_z">-->
+	<!--<main>-->
+		<!--<div class="wow fadeInLeftSmall">-->
+
+			<!--热门搜索 : <volist name="type" id="vo" >-->
+			<!--<volist name="vo.son" id="vo1" offset="0" length="6">-->
+				<!--<a href="__APP__/product/{$vo1.id}" style="margin-right: 15px">{$vo1.name}</a>-->
+			<!--</volist>-->
+		<!--</volist>-->
+		<!--</div>-->
+		<!--<div class="wow fadeInRightSmall">-->
+			<!--<form action="__APP__/search"method="get">-->
+				<!--<input name="keyword" type="text" id="search_text" class="search-text" placeholder="请输入查询内容" onfocus="if (value ==defaultValue){value =''}" onblur="if (value ==''){value=defaultValue}">-->
+				<!--<button type="submit" value="搜索" onclick="if (search_text.value==search_text.defaultValue||search_text.value=='') {alert('请输入产品名称');search_text.focus();return false;}" class="search-btn"/>搜索</button>-->
+				<!--</button>-->
+			<!--</form>-->
+		<!--</div>-->
+	<!--</main>-->
+<!--</section>-->
+
+<!-- 搜索代码 -->
+<!--<form action="__APP__/search"method="get">-->
+	<!--<input name="keyword" type="text" id="search_text" class="search-text" value="请输入产品名称" onfocus="if (value ==defaultValue){value =''}" onblur="if (value ==''){value=defaultValue}">-->
+	<!--<button type="submit" onclick="if (search_text.value==search_text.defaultValue||search_text.value=='') {alert('请输入产品名称');search_text.focus();return false;}"></button>-->
+<!--</form>-->
+<!-- 搜索代码 结束-->

@@ -1,0 +1,226 @@
+<!DOCTYPE HTML>
+<html class="needScrollSmall">
+<head>
+	{include file="public:head_admin"}
+</head>
+<body>
+<div class="iframe_main iframe_article needScrollSmall">
+	<div class="add_article_container">
+		<form class="layui-form layui-form-pane" id="edit_form" enctype="multipart/form-data">
+			<div class="layui-form-item">
+				<label class="layui-form-label">文章标题</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" lay-verType="alert" lay-verify="required" placeholder="请输入标题(必填)" value="{$list.name}" autocomplete="on" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">文章图片</label>
+				<div class="layui-input-block">
+					{if condition="$list.img neq ''"}
+					<div class="input_file_style input_file_style_on">
+						<div class="input_file" name="img">
+							<img src="__UPLOAD__/{$list.img}" class="needContain" alt="">
+						</div>
+					{else/}
+					<div class="input_file_style">
+						<div class="input_file" name="img">
+							<img src="" class="needContain" alt="">
+						</div>
+					{/if}
+						<div class="a1" dir="lt"></div>
+						<div class="a1" dir="rt"></div>
+						<div class="a1" dir="lb"></div>
+						<div class="a1" dir="rb"></div>
+						<div class="a2" dir="hor"></div>
+						<div class="a2" dir="ver"></div>
+					</div>
+					<input type="text" id="img" value="{$list.img}" name="img" hidden>
+
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">关键词</label>
+				<div class="layui-input-block">
+					<input type="text" name="keywords" value="{$list.keywords}" placeholder="{$list.keywords}" autocomplete="on" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">文章描述</label>
+				<div class="layui-input-block">
+					<input type="text" name="description" value="{$list.description}" placeholder="{$list.description}" autocomplete="on" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">选择分类</label>
+				<div class="layui-input-block">
+					<input type="text" value="{$list.pname}"  placeholder="请选择分类(必填)"   readonly class="layui-input pid_mask">
+					<input type="text" name="parent" lay-verType="alert" lay-verify="required" value="{$list.parent}" hidden class="layui-input">
+					<input type="text" name="code" lay-verType="alert" lay-verify="required" hidden class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">文章内容</label>
+				<div class="layui-input-block">
+					<textarea id="admin_content" name="content">
+						{$list.content}
+					</textarea>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">排序</label>
+				<div class="layui-input-block">
+					<input type="text" value="{$list.order}" name="order" placeholder="{$list.order}" autocomplete="on" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" id="submitBtn"  lay-submit lay-filter="formDemo">立即提交</button>
+					<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+				</div>
+			</div>
+			<div id="classTree" pids="{$list.parent}" style="display: none">
+				{$tree}
+			</div>
+		</form>
+	</div>
+</div>
+{include file="public:footer"}
+{include file="public:tinymce"}
+<script>
+    $(function () {
+        $(".pid_mask").click(function () {
+            var that=$(this);
+            $(".tree_son").each(function () {
+                var pidsArr=$("#classTree").attr("pids");
+                if(pidsArr==$(this).attr("id")){
+                    $(this).addClass("tree_son_on")
+                }
+            })
+            layui.use('layer', function(){
+                var layer = layui.layer;
+                layer.open({
+                    type: 1,
+                    maxmin:true,
+                    btn: ['确定'],
+                    shade:false,
+                    area: 'auto',
+                    maxWidth: '50vw',
+                    maxHeight: '50vh',
+                    content: $('#classTree'), //数组第二项即吸附元素选择器或者DOM
+                    yes: function(index, layero){
+                        var pids='';
+                        var pnames='';
+                        var code='';
+                        $(".tree_son_on").each(function () {
+                            pids+=$(this).attr("id")+",";
+                            pnames+=$(this).find("span").text()+",";
+                            code+=$(this).attr("code");
+                        });
+                        $(".pid_mask").attr("value",pnames.substr(0,pnames.length-1));
+                        $("input[name='parent']").attr("value",pids.substr(0,pids.length-1));
+                        $("input[name='code']").attr("value",code);
+                        layer.close(index);
+                    }
+                });
+            });
+        });
+        $(".tree_son").click(function () {
+            // var id=$(this).attr('id');
+            // //根据是否存在类进判断全选或取消
+            // if($(this).hasClass("tree_son_on")){
+            //     del_tree(id,"removeClass");
+            // }else{
+            //     del_tree(id,"addClass");
+            // }
+            $(".tree_son").removeClass("tree_son_on");
+            $(this).addClass("tree_son_on");
+        });
+		//处理分类树的递归方法
+        function del_tree(id,type) {
+            if(type=="removeClass"){
+                $(".tree_son").each(function () {
+                    var parent = $(this).attr('parent');
+                    var id2 = $(this).attr('id');
+                    if (parent == id) {
+                        $(this).removeClass("tree_son_on");
+                        del_tree(id2,"removeClass");
+                    }
+                });
+            }else if(type=="addClass"){
+                $(".tree_son").each(function () {
+                    var parent = $(this).attr('parent');
+                    var id2 = $(this).attr('id');
+                    if (parent == id) {
+                        $(this).addClass("tree_son_on");
+                        del_tree(id2,"addClass");
+                    }
+                });
+            }
+        }
+
+
+        layui.use('form', function(){
+            var form = layui.form;
+            //监听提交
+            form.on('submit(formDemo)', function(){
+                //将编辑器的内容存入表单
+                $("#admin_content").val(tinymce.get("admin_content").getContent());
+                //生产FormData实例
+                var formSatellite = document.getElementById("edit_form");
+                var art_form = new FormData(formSatellite);
+                $.ajax({
+                    url:"__APP__/category/editArticle?id={$list.id}",
+                    data:art_form,
+                    type:"post",
+                    async : false,
+                    contentType: false,
+                    processData: false,
+                    success:function (res) {
+                        layer.alert("修改成功");
+                    },
+                    error:function (res) {
+                        layer.alert("修改失败");
+                    }
+                })
+                return false;
+            });
+        });
+        //文件上传实例
+        layui.use('upload', function(){
+            var upload = layui.upload;
+            $(".input_file").each(function () {
+                let that=$(this);
+                upload.render({
+                    elem: that
+                    ,url: '__APP__/base/upLoads'
+                    ,field:that.attr("name")
+                    ,data:{
+                        filename:that.attr("name")
+                    }
+                    ,choose: function (obj) {
+                        //将暂存路径映射至上传区域
+                        obj.preview(function(index, file, result){
+                            that.find('img').attr("src",result);
+                            that.parent().addClass("input_file_style_on")
+                        });
+                    }
+                    ,before: function () {
+
+                    }
+                    ,done: function (res,index) {
+                        //将返回数据映射至相应input[type=file]
+                        var tar_id=$(this)[0]["data"]["filename"];
+                        $("#"+tar_id).val(res.data.src);
+
+                    }
+                });
+            })
+
+        });
+    })
+</script>
+</body>
+</html>

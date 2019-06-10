@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html class="needScrollSmall">
+<head>
+	{include file="public:head_admin"}
+</head>
+<body>
+<style>
+	body { scrollbar-highlight-color: buttonface; scrollbar-shadow-color: buttonface; scrollbar-3dlight-color: buttonhighlight; scrollbar-track-color: #eeeeee; scrollbar-darkshadow-color: buttonshadow}
+</style>
+<div class="admin_main">
+	{include file="public:sidebar"}
+</div>
+<div class="main_container "lay-allowClose="true" lay-filter="admin_body">
+	<div class="admin_header">
+		<div class="header_menu"></div>
+		<!--顶部tab切换头-->
+		<div class="header_tab swiper-container">
+			<div class="swiper-wrapper">
+				<!--顶部tab切换位置-->
+			</div>
+		</div>
+	</div>
+	<!--占位DIV-->
+	<div class="header_top_add"></div>
+	<div class="iframe_tab">
+		<!--顶部tab切换iframe位置-->
+		<iframe src="__APP__/note" class="admin_body default_iframe"  frameborder="0"></iframe>
+	</div>
+</div>
+{include file="public:footer"}
+<script>
+	function parentAddTab(aHref,text,aTarget) {
+        tabHeader.addTab(aHref,text);
+        tabHeader.addIframe(aHref,text,aTarget);
+    }
+</script>
+</body>
+</html>
