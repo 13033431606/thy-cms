@@ -96,7 +96,7 @@ class Thy extends Base
         $host = 'http://' . $_SERVER['HTTP_HOST'];
         foreach($matches[1] as $img_url){
             //strpos(a,b) 匹配a字符串中是否包含b字符串 包含返回true
-            if(strpos($img_url, 'emoticons')===false){
+            if(strpos($img_url, 'https://')===false){
                 $filepath = $host.$img_url;
                 $content=str_replace($img_url,$filepath,$content);
             }

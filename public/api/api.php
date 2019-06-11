@@ -59,6 +59,15 @@
  * @apiUse FoundError
  */
 
+/**
+ * @api {get} /getType 获取分类名称和id
+ * @apiName Category
+ * @apiGroup Category
+ *
+ * @apiSuccessExample 样本数据:
+ * {"一级分类":1,"产品中心":2,"人才招聘":3,"前端":15,"php":18,"js":19,"css":20,"笔记":13,"git":16,"后端":17,"vue":14,"mysql":21,"tinymce":22,"ui":52}
+*/
+
 
 /**
  * @api {get} /category/:id 分类数据获取
