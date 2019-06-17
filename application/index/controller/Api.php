@@ -3,7 +3,7 @@ namespace app\index\controller;
 header('Access-Control-Allow-Origin:*');
 header("Content-type:app/json");
 use think\View;
-
+use think\Db;
 
 class Api extends Thy
 {
@@ -13,21 +13,25 @@ class Api extends Thy
         return $view->fetch();
     }
 
+    //根据id获取文章
     public function article(){
         $id=$_GET['id'];
         $data['code']="200";//api标志码
         $data['message']="链接成功";//返回信息
         $data['data']=db("article")->where("id in ($id)")->order('order desc,id desc')->select();
         $data['data'][0]['content']=$this->add_imgs_url($data['data'][0]['content']);
+        $data['count']=count($data['data']);
         return json($data);
     }
 
+    //根据父id获取文章
     public function category(){
         $id=$_GET['id'];
         if($id==0){
             $data['code']="200";//api标志码
             $data['message']="链接成功";//返回信息
             $data['data']=db("article")->order('order desc,id desc')->select();
+            $data['count']=count($data['data']);
         }
         else{
             $base=new Base();
@@ -35,10 +39,12 @@ class Api extends Thy
             $data['code']="200";//api标志码
             $data['message']="链接成功";//返回信息
             $data['data']=db("article")->where("pid in ($id)")->order('order desc,id desc')->select();
+            $data['count']=count($data['data']);
         }
         return json($data);
     }
 
+    //毒鸡汤
     public function words(){
         $time=$_GET['time'];
         $UserAgent = 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; .NET CLR 3.5.21022; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
@@ -48,6 +54,17 @@ class Api extends Thy
         curl_exec($curl);
     }
 
+    //搜索
+    public function article_search(){
+        $keywords=$_GET["keywords"];
+        $data['code']="200";//api标志码
+        $data['message']="链接成功";//返回信息
+        $data['data']=db("article")->where("title like '%$keywords%'")->order("order desc,id desc")->select();
+        $data['count']=count($data['data']);
+        return json($data);
+    }
+
+    //获取文章数量
     public function count(){
         $id=$_GET['id'];
         if($id==0){
@@ -67,11 +84,13 @@ class Api extends Thy
         return json($data);
     }
 
+    //获取分类信息
     public function getType(){
         $types=db("type")->column("id","name");
         return json($types);
     }
 
+    //获取分类树
     public function getTree($id = 1)
     {
         $id=$_GET['id'];
