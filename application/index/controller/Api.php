@@ -24,22 +24,27 @@ class Api extends Thy
         return json($data);
     }
 
-    //根据父id获取文章
+    //根据父id获取文章 id,page,num
     public function category(){
         $id=$_GET['id'];
+        $page=$_GET['page'];
+        $num=$_GET['num'];
+        $total_num=($page-1)*$num;
         if($id==0){
             $data['code']="200";//api标志码
             $data['message']="链接成功";//返回信息
-            $data['data']=db("article")->order('order desc,id desc')->select();
-            $data['count']=count($data['data']);
+            $data['data']=db("article")->order('order desc,id desc')->limit($total_num,$num)->select();
+            $count=db("article")->select();
+            $data['count']=count($count);
         }
         else{
             $base=new Base();
             $id=$base->getTypeID($id);
             $data['code']="200";//api标志码
             $data['message']="链接成功";//返回信息
-            $data['data']=db("article")->where("pid in ($id)")->order('order desc,id desc')->select();
-            $data['count']=count($data['data']);
+            $data['data']=db("article")->where("pid in ($id)")->order('order desc,id desc')->limit($total_num,$num)->select();
+            $count=db("article")->where("pid in ($id)")->select();
+            $data['count']=count($count);
         }
         return json($data);
     }
@@ -86,8 +91,16 @@ class Api extends Thy
 
     //获取分类信息
     public function getType(){
-        $types=db("type")->column("id","name");
-        return json($types);
+        $id=$_GET['id'];
+        $types=db("type")->where("code like '%$id%' and id <> $id")->order('order desc,id desc')->column("name,id");
+        $data=[];
+        foreach ($types as $key => $value){
+            $data2["name"]=$key;
+            $data2["id"]=$value;
+            array_push($data,$data2);
+        }
+        return json($data);
+
     }
 
     //获取分类树
