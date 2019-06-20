@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:64:"D:\WWW\thy-cms\public/../application/index\view\article\add.html";i:1558271933;s:60:"D:\WWW\thy-cms\application\index\view\public\head_admin.html";i:1554637412;s:56:"D:\WWW\thy-cms\application\index\view\public\footer.html";i:1556348597;s:57:"D:\WWW\thy-cms\application\index\view\public\tinymce.html";i:1561027814;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:66:"D:\WWW\thy-cms\public/../application/index\view\category\edit.html";i:1558268250;s:60:"D:\WWW\thy-cms\application\index\view\public\head_admin.html";i:1554637412;s:56:"D:\WWW\thy-cms\application\index\view\public\footer.html";i:1556348597;s:57:"D:\WWW\thy-cms\application\index\view\public\tinymce.html";i:1557155414;}*/ ?>
 <!DOCTYPE HTML>
 <html class="needScrollSmall">
 <head>
@@ -44,20 +44,27 @@
 <body>
 <div class="iframe_main iframe_article needScrollSmall">
 	<div class="add_article_container">
-		<form class="layui-form layui-form-pane" id="article_form" enctype="multipart/form-data">
+		<form class="layui-form layui-form-pane" id="edit_form" enctype="multipart/form-data">
 			<div class="layui-form-item">
 				<label class="layui-form-label">文章标题</label>
 				<div class="layui-input-block">
-					<input type="text" name="title" placeholder="请输入标题(必填)" lay-verType="alert" lay-verify="required" autocomplete="on" class="layui-input">
+					<input type="text" name="name" lay-verType="alert" lay-verify="required" placeholder="请输入标题(必填)" value="<?php echo $list['name']; ?>" autocomplete="on" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">文章图片</label>
 				<div class="layui-input-block">
+					<?php if($list['img'] != ''): ?>
+					<div class="input_file_style input_file_style_on">
+						<div class="input_file" name="img">
+							<img src="/public/uploads/<?php echo $list['img']; ?>" class="needContain" alt="">
+						</div>
+					<?php else: ?>
 					<div class="input_file_style">
-						<div class="input_file" name="img1">
+						<div class="input_file" name="img">
 							<img src="" class="needContain" alt="">
 						</div>
+					<?php endif; ?>
 						<div class="a1" dir="lt"></div>
 						<div class="a1" dir="rt"></div>
 						<div class="a1" dir="lb"></div>
@@ -65,68 +72,44 @@
 						<div class="a2" dir="hor"></div>
 						<div class="a2" dir="ver"></div>
 					</div>
+					<input type="text" id="img" value="<?php echo $list['img']; ?>" name="img" hidden>
 
-					<div class="input_file_style">
-						<div class="input_file" name="img2">
-							<img src="" class="needContain" alt="">
-						</div>
-						<div class="a1" dir="lt"></div>
-						<div class="a1" dir="rt"></div>
-						<div class="a1" dir="lb"></div>
-						<div class="a1" dir="rb"></div>
-						<div class="a2" dir="hor"></div>
-						<div class="a2" dir="ver"></div>
-					</div>
-					<div class="input_file_style">
-						<div class="input_file" name="img3" >
-							<img src="" class="needContain" alt="">
-						</div>
-						<div class="a1" dir="lt"></div>
-						<div class="a1" dir="rt"></div>
-						<div class="a1" dir="lb"></div>
-						<div class="a1" dir="rb"></div>
-						<div class="a2" dir="hor"></div>
-						<div class="a2" dir="ver"></div>
-					</div>
-                    <input type="text" id="img1" name="img1" hidden>
-                    <input type="text" id="img2" name="img2" hidden>
-                    <input type="text" id="img3" name="img3" hidden>
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">关键词</label>
 				<div class="layui-input-block">
-					<input type="text" name="keywords" placeholder="请输入关键词" autocomplete="on" class="layui-input">
+					<input type="text" name="keywords" value="<?php echo $list['keywords']; ?>" placeholder="<?php echo $list['keywords']; ?>" autocomplete="on" class="layui-input">
 				</div>
 			</div>
 
 			<div class="layui-form-item">
 				<label class="layui-form-label">文章描述</label>
 				<div class="layui-input-block">
-					<input type="text" name="description" placeholder="请输入文章描述" autocomplete="on" class="layui-input">
+					<input type="text" name="description" value="<?php echo $list['description']; ?>" placeholder="<?php echo $list['description']; ?>" autocomplete="on" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label" id="tst">选择分类</label>
-				<div class="layui-input-block" >
-					<!--<select name="pid" lay-verify="required" >-->
-						<!--<?php echo $tree; ?>-->
-					<!--</select>-->
-					<input type="text"  placeholder="请选择分类(必填)"  readonly class="layui-input pid_mask">
-					<input type="text" lay-verType="alert" lay-verify="required" name="pid" hidden class="layui-input">
+				<label class="layui-form-label">选择分类</label>
+				<div class="layui-input-block">
+					<input type="text" value="<?php echo $list['pname']; ?>"  placeholder="请选择分类(必填)"   readonly class="layui-input pid_mask">
+					<input type="text" name="parent" lay-verType="alert" lay-verify="required" value="<?php echo $list['parent']; ?>" hidden class="layui-input">
+					<input type="text" name="code" lay-verType="alert" lay-verify="required" hidden class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">文章内容</label>
 				<div class="layui-input-block">
-					<textarea id="admin_content" name="content"></textarea>
+					<textarea id="admin_content" name="content">
+						<?php echo $list['content']; ?>
+					</textarea>
 				</div>
 			</div>
 
 			<div class="layui-form-item">
 				<label class="layui-form-label">排序</label>
 				<div class="layui-input-block">
-					<input type="text" name="order" placeholder="请输入排序" autocomplete="on" class="layui-input">
+					<input type="text" value="<?php echo $list['order']; ?>" name="order" placeholder="<?php echo $list['order']; ?>" autocomplete="on" class="layui-input">
 				</div>
 			</div>
 
@@ -136,7 +119,7 @@
 					<!--<button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
 				</div>
 			</div>
-			<div id="classTree" style="display: none">
+			<div id="classTree" pids="<?php echo $list['parent']; ?>" style="display: none">
 				<?php echo $tree; ?>
 			</div>
 		</form>
@@ -272,7 +255,6 @@
 
         //编辑器默认最低高度
         min_height: 350,
-        max_height: 600,
 
         //匹配css//https://www.tiny.cloud/docs/plugins/importcss/
         content_css:"",
@@ -382,7 +364,6 @@
 
         //编辑器默认最低高度
         min_height: 350,
-        max_height: 600,
 
         //匹配css//https://www.tiny.cloud/docs/plugins/importcss/
         content_css:"",
@@ -399,9 +380,15 @@
     tinymce.init(api_option);
 </script>
 <script>
-	$(function () {
+    $(function () {
         $(".pid_mask").click(function () {
             var that=$(this);
+            $(".tree_son").each(function () {
+                var pidsArr=$("#classTree").attr("pids");
+                if(pidsArr==$(this).attr("id")){
+                    $(this).addClass("tree_son_on")
+                }
+            })
             layui.use('layer', function(){
                 var layer = layui.layer;
                 layer.open({
@@ -416,28 +403,32 @@
                     yes: function(index, layero){
                         var pids='';
                         var pnames='';
+                        var code='';
                         $(".tree_son_on").each(function () {
                             pids+=$(this).attr("id")+",";
                             pnames+=$(this).find("span").text()+",";
+                            code+=$(this).attr("code");
                         });
                         $(".pid_mask").attr("value",pnames.substr(0,pnames.length-1));
-                        $("input[name='pid']").attr("value",pids.substr(0,pids.length-1));
+                        $("input[name='parent']").attr("value",pids.substr(0,pids.length-1));
+                        $("input[name='code']").attr("value",code);
                         layer.close(index);
                     }
                 });
             });
         });
         $(".tree_son").click(function () {
-            var id=$(this).attr('id');
-            //根据是否存在类进判断全选或取消
-            if($(this).hasClass("tree_son_on")){
-                del_tree(id,"removeClass");
-            }else{
-                del_tree(id,"addClass");
-            }
-            $(this).toggleClass("tree_son_on");
-        })
-//处理分类树的递归方法
+            // var id=$(this).attr('id');
+            // //根据是否存在类进判断全选或取消
+            // if($(this).hasClass("tree_son_on")){
+            //     del_tree(id,"removeClass");
+            // }else{
+            //     del_tree(id,"addClass");
+            // }
+            $(".tree_son").removeClass("tree_son_on");
+            $(this).addClass("tree_son_on");
+        });
+		//处理分类树的递归方法
         function del_tree(id,type) {
             if(type=="removeClass"){
                 $(".tree_son").each(function () {
@@ -459,54 +450,29 @@
                 });
             }
         }
+
+
         layui.use('form', function(){
             var form = layui.form;
-            //表单验证
-            form.verify({
-                username: function(value, item){
-                    if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
-                        return '用户名不能有特殊字符';
-                    }
-                    if(/(^\_)|(\__)|(\_+$)/.test(value)){
-                        return '用户名首尾不能出现下划线\'_\'';
-                    }
-                    if(!/^[a-z0-9]{3,16}$/.test(value)){
-                        return '用户名只能由英文和数字组成,长度3-16位'
-                    }
-                }
-                ,pid:function (value,item) {
-					if(value == '文章栏目'){
-                        return '请选择分类';
-					}
-                }
-                ,pass: [
-                    /^[\S]{6,12}$/
-                    ,'密码必须6到12位，且不能出现空格'
-                ]
-            });
             //监听提交
             form.on('submit(formDemo)', function(){
-                //加载样式
-                var loading=layer.load(2);
-				//将编辑器的内容存入表单
+                //将编辑器的内容存入表单
                 $("#admin_content").val(tinymce.get("admin_content").getContent());
                 //生产FormData实例
-                var formSatellite = document.getElementById("article_form");
+                var formSatellite = document.getElementById("edit_form");
                 var art_form = new FormData(formSatellite);
                 $.ajax({
-                    url:"/public/article/addArticle",
+                    url:"/public/category/editArticle?id=<?php echo $list['id']; ?>",
                     data:art_form,
                     type:"post",
                     async : false,
                     contentType: false,
                     processData: false,
                     success:function (res) {
-                        layer.alert("添加成功");
-                        layer.close(loading);
+                        layer.alert("修改成功");
                     },
                     error:function (res) {
-                        layer.alert("添加失败");
-                        layer.close(loading);
+                        layer.alert("修改失败");
                     }
                 })
                 return false;
@@ -528,7 +494,7 @@
                         //将暂存路径映射至上传区域
                         obj.preview(function(index, file, result){
                             that.find('img').attr("src",result);
-                            that.parent().addClass("input_file_style_on");
+                            that.parent().addClass("input_file_style_on")
                         });
                     }
                     ,before: function () {
@@ -536,8 +502,9 @@
                     }
                     ,done: function (res,index) {
                         //将返回数据映射至相应input[type=file]
-						var tar_id=$(this)[0]["data"]["filename"];
-						$("#"+tar_id).val(res.data.src);
+                        var tar_id=$(this)[0]["data"]["filename"];
+                        $("#"+tar_id).val(res.data.src);
+
                     }
                 });
             })
