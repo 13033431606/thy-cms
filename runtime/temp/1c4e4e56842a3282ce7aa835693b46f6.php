@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:86:"D:\phpStudy\PHPTutorial\WWW\thy-cms\public/../application/index\view\article\edit.html";i:1558268250;s:81:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\head_admin.html";i:1554637412;s:77:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\footer.html";i:1556348597;s:78:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\tinymce.html";i:1557155414;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:86:"D:\phpStudy\PHPTutorial\WWW\thy-cms\public/../application/index\view\article\edit.html";i:1558268250;s:81:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\head_admin.html";i:1554637412;s:77:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\footer.html";i:1556348597;s:78:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\tinymce.html";i:1561042945;}*/ ?>
 <!DOCTYPE HTML>
 <html class="needScrollSmall">
 <head>
@@ -302,6 +302,7 @@
 
         //编辑器默认最低高度
         min_height: 350,
+        max_height: 600,
 
         //匹配css//https://www.tiny.cloud/docs/plugins/importcss/
         content_css:"",
@@ -411,6 +412,7 @@
 
         //编辑器默认最低高度
         min_height: 350,
+        max_height: 600,
 
         //匹配css//https://www.tiny.cloud/docs/plugins/importcss/
         content_css:"",

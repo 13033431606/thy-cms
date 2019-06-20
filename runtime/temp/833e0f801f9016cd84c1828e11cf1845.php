@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"D:\phpStudy\PHPTutorial\WWW\thy-cms\public/../application/index\view\article\index.html";i:1558268016;s:81:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\head_admin.html";i:1554637412;s:77:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\footer.html";i:1556348597;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"D:\phpStudy\PHPTutorial\WWW\thy-cms\public/../application/index\view\article\index.html";i:1561043255;s:81:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\head_admin.html";i:1554637412;s:77:"D:\phpStudy\PHPTutorial\WWW\thy-cms\application\index\view\public\footer.html";i:1556348597;}*/ ?>
 <!DOCTYPE HTML>
 <html class="needScrollSmall">
 <head>
@@ -172,7 +172,7 @@
                 var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
                 var tr = obj.tr; //获得当前行 tr 的DOM对象
                 if(layEvent === 'detail'){ //查看
-                    //do somehing
+                   	window.open("http://www.thy-blog.com/#/article_info/"+data.id);
                 } else if(layEvent === 'del'){ //删除
                     layer.confirm('真的删除行么', function(index){
                         layer.close(index);

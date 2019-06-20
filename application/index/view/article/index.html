@@ -108,7 +108,7 @@
                 var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
                 var tr = obj.tr; //获得当前行 tr 的DOM对象
                 if(layEvent === 'detail'){ //查看
-                    //do somehing
+                   	window.open("http://www.thy-blog.com/#/article_info/"+data.id);
                 } else if(layEvent === 'del'){ //删除
                     layer.confirm('真的删除行么', function(index){
                         layer.close(index);
