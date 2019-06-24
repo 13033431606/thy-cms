@@ -1,7 +1,8 @@
 <?php
 namespace app\index\controller;
 
-
+header('Access-Control-Allow-Origin:*');
+header("Content-type:app/json");
 use think\View;
 use think\Db;
 use app\index\model\ArticleModel;
